@@ -10,8 +10,10 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Adapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.machine_time.googlebooks.net.GoogleBookApi;
 import com.example.machine_time.googlebooks.net.model.Book;
@@ -90,13 +92,23 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                     if(response.getItems().size() > 0){
                                         if(booksLv.getAdapter() == null){
                                             fillModel(response, response.getItems().size());
-                                            adapterList = new AdapterList(books);
+                                            adapterList = new AdapterList(books, new AdapterList.OnItemClickListener() {
+                                                @Override
+                                                public void onItemClick(Book item) {
+                                                    Toast.makeText(MainActivity.this, item.getTitle(), Toast.LENGTH_SHORT).show();
+                                                }
+                                            });
                                             layoutManager = new LinearLayoutManager(getApplicationContext());
                                             booksLv.setLayoutManager(layoutManager);
                                         }else{
                                             books.clear();
                                             fillModel(response, response.getItems().size());
-                                            adapterList = new AdapterList(books);
+                                            adapterList = new AdapterList(books, new AdapterList.OnItemClickListener() {
+                                                @Override
+                                                public void onItemClick(Book item) {
+                                                    Toast.makeText(MainActivity.this, item.getTitle(), Toast.LENGTH_SHORT).show();
+                                                }
+                                            });
                                             layoutManager = new LinearLayoutManager(getApplicationContext());
                                             booksLv.setLayoutManager(layoutManager);
                                         }
@@ -129,7 +141,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                 try{
                                     if(response.getItems().size() > 0){
                                         fillModel(response, response.getItems().size());
-                                        adapterList = new AdapterList(books);
+                                        adapterList = new AdapterList(books, new AdapterList.OnItemClickListener() {
+                                            @Override
+                                            public void onItemClick(Book item) {
+                                                Toast.makeText(MainActivity.this, item.getTitle(), Toast.LENGTH_SHORT).show();
+                                            }
+                                        });
                                         layoutManager = new LinearLayoutManager(getApplicationContext());
                                         booksLv.setLayoutManager(layoutManager);
                                         booksLv.setAdapter(adapterList);
