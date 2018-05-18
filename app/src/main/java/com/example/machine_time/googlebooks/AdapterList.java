@@ -131,4 +131,3 @@ public class AdapterList extends RecyclerView.Adapter<AdapterList.ViewHolder>{
 
 
 }
-

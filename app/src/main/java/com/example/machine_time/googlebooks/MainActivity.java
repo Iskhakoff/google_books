@@ -15,6 +15,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+
 import com.example.machine_time.googlebooks.net.GoogleBookApi;
 import com.example.machine_time.googlebooks.net.model.Book;
 import com.example.machine_time.googlebooks.net.model.Example;
@@ -121,6 +122,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                     }
                                 }catch (NullPointerException e){
                                     Log.e("MainActivity", "NullPointerException => " + e.getMessage());
+                                    Toast.makeText(MainActivity.this, "Такой книги не найдено", Toast.LENGTH_SHORT).show();
+                                    showMore.setVisibility(View.INVISIBLE);
                                 }
                             }
                         });

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<android.support.v4.widget.NestedScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -12,52 +12,57 @@
     android:focusableInTouchMode="true">
 
 
-
-    <android.support.design.widget.TextInputLayout
-        android:id="@+id/searchingBook"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp">
+        android:orientation="vertical">
 
-        <EditText
-            android:id="@+id/searchingBookEt"
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/searchingBook"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Enter book name"
-            tools:ignore="ObsoleteLayoutParam">
-        </EditText>
+            android:layout_marginTop="8dp">
 
-    </android.support.design.widget.TextInputLayout>
+            <EditText
+                android:id="@+id/searchingBookEt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Enter book name"
+                tools:ignore="ObsoleteLayoutParam">
+            </EditText>
 
-
-    <Button
-        android:id="@+id/findBookBtn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/search_button"
-        android:layout_gravity="center"
-        android:layout_marginBottom="10dp"
-        android:background="@drawable/ripple"
-        />
-
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/booksLv"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-    </android.support.v7.widget.RecyclerView>
-
-    <Button
-        android:id="@+id/showMore"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Показать еще..."
-        android:textSize="10sp"
-        android:visibility="invisible"
-        tools:ignore="SmallSp" />
+        </android.support.design.widget.TextInputLayout>
 
 
+        <Button
+            android:id="@+id/findBookBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/search_button"
+            android:layout_gravity="center"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/ripple"
+            />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/booksLv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        </android.support.v7.widget.RecyclerView>
+
+        <Button
+            android:id="@+id/showMore"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Показать еще..."
+            android:textSize="10sp"
+            android:visibility="invisible"
+            tools:ignore="SmallSp" />
+
+    </LinearLayout>
+
+</android.support.v4.widget.NestedScrollView>
 
 
 
-</LinearLayout>
