@@ -1,6 +1,7 @@
 package com.example.machine_time.googlebooks.net;
 
 import com.example.machine_time.googlebooks.net.model.Example;
+import com.example.machine_time.googlebooks.net.model.Item;
 import com.example.machine_time.googlebooks.net.model.VolumeInfo;
 
 import java.util.concurrent.TimeUnit;
@@ -63,7 +64,7 @@ public class GoogleBookApi {
         return request.getBook(book);
     }
 
-    public Observable<VolumeInfo> getBookById(String bookId){
+    public Observable<Item> getBookById(String bookId){
         GoogleBookApiEndPoint request = retrofit.create(GoogleBookApiEndPoint.class);
         return request.getBookById(bookId);
     }
@@ -89,7 +90,7 @@ public class GoogleBookApi {
         @GET(VOLUME + "?")
         Observable<Example> getBook(@Query("q") String book);
         @GET(VOLUME + "/{id}")
-        Observable<VolumeInfo> getBookById(@Path("id") String bookId);
+        Observable<Item> getBookById(@Path("id") String bookId);
         @GET(VOLUME + "?")
         Observable<Example> showMore(@Query("q") String book, @Query("startIndex") int startIndex, @Query("maxResult") int maxResult);
     }

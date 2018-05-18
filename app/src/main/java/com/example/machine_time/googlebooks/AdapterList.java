@@ -2,22 +2,17 @@ package com.example.machine_time.googlebooks;
 
 
 import android.content.Context;
-import android.media.Image;
-import android.support.v4.app.NotificationCompat;
-import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.example.machine_time.googlebooks.net.model.Book;
 import com.squareup.picasso.Picasso;
-
 import java.util.List;
-
 import butterknife.BindView;
+import butterknife.ButterKnife;
 
 public class AdapterList extends RecyclerView.Adapter<AdapterList.ViewHolder>{
 
@@ -59,18 +54,18 @@ public class AdapterList extends RecyclerView.Adapter<AdapterList.ViewHolder>{
 
     public static class ViewHolder extends RecyclerView.ViewHolder{
 
+        @BindView(R.id.poster)
         ImageView poster;
+        @BindView(R.id.titleTv)
         TextView titleTv;
+        @BindView(R.id.authorTv)
         TextView authorTv;
+        @BindView(R.id.publishDateTv)
         TextView publishDateTv;
-//        CardView cv;
 
         public ViewHolder(View itemView) {
             super(itemView);
-            poster = (ImageView)itemView.findViewById(R.id.poster);
-            titleTv = (TextView)itemView.findViewById(R.id.titleTv);
-            authorTv = (TextView)itemView.findViewById(R.id.authorTv);
-            publishDateTv = (TextView)itemView.findViewById(R.id.publishDateTv);
+            ButterKnife.bind(this, itemView);
         }
 
         public void bind(final Book book, final OnItemClickListener listener){
@@ -78,13 +73,36 @@ public class AdapterList extends RecyclerView.Adapter<AdapterList.ViewHolder>{
             if(book.getThumbSmall() != null){
                 Picasso.get().load(book.getThumbSmall()).into(poster);
             }
-            titleTv.setText(book.getTitle());
+
+            if(book.getTitle().length() > 60){
+                int count = 0;
+                int index = 0;
+                for (int i = 0; i < book.getTitle().length(); i++) {
+                    if(book.getTitle().charAt(i) == ' '){
+                        count++;
+                        if(count == 3){
+                            index = i;
+                            break;
+                        }
+                    }
+                }
+
+                String title = book.getTitle().substring(0, index);
+                titleTv.setText(title);
+            }else{
+                titleTv.setText(book.getTitle());
+            }
+
+            if(book.getSubtitle() != null){
+                titleTv.setText(titleTv.getText() + ": " + book.getSubtitle());
+            }
+
             if(book.getAuthors() != null){
                 if(book.getAuthors().size() > 1){
                     for (int i = 0; i < book.getAuthors().size(); i++) {
                         if(i == 0){
                             authorTv.setText(book.getAuthors().get(i));
-                        }else{
+                        }else if(i > 0){
                             authorTv.setText(authorTv.getText().toString() + ", " + book.getAuthors().get(i));
                         }
                     }

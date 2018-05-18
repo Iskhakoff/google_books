@@ -2,10 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/GoogleBooks.iml" filepath="$PROJECT_DIR$/GoogleBooks.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/google_books_v2.iml" filepath="$PROJECT_DIR$/google_books_v2.iml" />
+      <module fileurl="file://D:\repoAndroid\google_books_v2\google_books_v2.iml" filepath="D:\repoAndroid\google_books_v2\google_books_v2.iml" />
     </modules>
   </component>
 </project>

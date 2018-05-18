@@ -1,6 +1,7 @@
 package com.example.machine_time.googlebooks;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -10,7 +11,6 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.Adapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -66,6 +66,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View v) {
         GoogleBookApi googleBookApi = GoogleBookApi.getInstanse();
+
+        Intent bookId = new Intent(this, BookActivity.class);
+
         switch (v.getId()){
             case R.id.findBookBtn:
                 showMore.setVisibility(View.VISIBLE);
@@ -95,7 +98,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                             adapterList = new AdapterList(books, new AdapterList.OnItemClickListener() {
                                                 @Override
                                                 public void onItemClick(Book item) {
-                                                    Toast.makeText(MainActivity.this, item.getTitle(), Toast.LENGTH_SHORT).show();
+                                                    bookId.putExtra("bookId", item.getId());
+                                                    startActivity(bookId);
                                                 }
                                             });
                                             layoutManager = new LinearLayoutManager(getApplicationContext());
@@ -106,7 +110,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                             adapterList = new AdapterList(books, new AdapterList.OnItemClickListener() {
                                                 @Override
                                                 public void onItemClick(Book item) {
-                                                    Toast.makeText(MainActivity.this, item.getTitle(), Toast.LENGTH_SHORT).show();
+                                                    bookId.putExtra("bookId", item.getId());
+                                                    startActivity(bookId);
                                                 }
                                             });
                                             layoutManager = new LinearLayoutManager(getApplicationContext());
@@ -119,6 +124,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                 }
                             }
                         });
+
                 break;
             case R.id.showMore:
                 subscription = googleBookApi.showMore(searchingBookEt.getText().toString(), books.size(), 10)
@@ -144,7 +150,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                         adapterList = new AdapterList(books, new AdapterList.OnItemClickListener() {
                                             @Override
                                             public void onItemClick(Book item) {
-                                                Toast.makeText(MainActivity.this, item.getTitle(), Toast.LENGTH_SHORT).show();
+                                                bookId.putExtra("bookId", item.getId());
+                                                startActivity(bookId);
                                             }
                                         });
                                         layoutManager = new LinearLayoutManager(getApplicationContext());
